@@ -10,8 +10,14 @@ class Table
 #[Attribute]
 class Column
 {
-    public function __construct(public string $name, public string $type, public bool $primary = false, public bool $autoIncrement = false, public bool $nullable = true)
-    {
+    public function __construct(
+        public string $name,
+        public string $type,
+        public bool $primary = false,
+        public bool $autoIncrement = false,
+        public bool $unique = false,
+        public bool $nullable = true
+    ) {
     }
 }
 #[Table("products")]
@@ -42,5 +48,29 @@ class Product
         $this->description = $description;
         $this->price = $price;
         $this->quantity = $quantity;
+    }
+}
+#[Table("users")]
+
+class User
+{
+    #[Column("id", "INT", primary: true, autoIncrement: true)]
+    public int $id = 0;
+
+    #[Column("userName", "VARCHAR(255)", unique: true, nullable: true)]
+    public string $userName;
+
+    #[Column("email", "VARCHAR(255)", unique: true, nullable: true)]
+
+    public string $email;
+
+    #[Column("password", "VARCHAR(255)", unique: true, nullable: true)]
+    public string $password;
+
+    public function __construct($userName, $email, $password)
+    {
+        $this->userName = $userName;
+        $this->email = $email;
+        $this->password = $password;
     }
 }

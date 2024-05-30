@@ -8,6 +8,6 @@ require_once "./model.php";
 $db = new Database();
 $orm = new ORM($db);
 
-$product = new Product('Produit XXX', 'description testXX   .', 1000.99, 10);
+$user = new User('Grundrak', 'test@email.com', '123456' );
 
-$orm->create($product);
+$orm->create($user);
